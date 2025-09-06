@@ -1,0 +1,46 @@
+title: "Resume"
+description: "Online Engineering Director - Backend & Live Services - Rocket League & Sideswipe"
+url: "https://www.spencerpiontkowski.com/"
+baseurl: ""
+minimal_mistakes_skin: "dark"              # default, air, aqua, contrast, dark, dirt, mint, neon, plum, sunrise
+remote_theme: "mmistakes/minimal-mistakes"
+
+# Build paths
+source: docs
+destination: _site
+
+# Localization
+locale: en
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+
+# Author profile appears in the sidebar when `author_profile: true` is set on a page
+author:
+  name: "Spencer Piontkowski"
+  avatar: "https://gravatar.com/avatar/2549709294169dcf79acb6fa6ad3bae0f43c89c77bb356d272186fc42d8d494d"  # replace with a real photo (e.g., 250x250)
+  bio: "Online Engineering Director. Backend & live services for large-scale online games; Reliability; Org Leadership"
+  location: "Remote"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/piontkowski"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://www.linkedin.com/in/spiontkowski/"
+    - label: "Email"
+      icon: "fas fa-envelope email-link"
+      url: "&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#104;&#101;&#108;&#108;&#111;&#64;&#115;&#112;&#101;&#110;&#99;&#101;&#114;&#112;&#105;&#111;&#110;&#116;&#107;&#111;&#119;&#115;&#107;&#105;&#46;&#99;&#111;&#109;"
+
+# Site-wide defaults for pages
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      toc: false
+      toc_sticky: false
+      classes: wide

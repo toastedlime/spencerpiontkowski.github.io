@@ -1,0 +1,79 @@
+<style>
+  /* Hide theme's default copyright line, show our custom one */
+  .page__footer-copyright:not([data-custom]) { display: none !important; }
+  /* Hide feed link in footer even without JS */
+  .page__footer-follow a[href$="/feed.xml"],
+  .page__footer-follow a[href$="feed.xml"] { display: none !important; }
+</style>
+
+<script type="text/javascript">
+  // Inject obfuscated email link on load
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      // Build the address in parts to avoid easy scraping
+      var u = ['he','llo'].join('');
+      var d = ['spencer','piontkowski'].join('');
+      var t = ['.','com'].join('');
+      var addr = u + '@' + d + t;
+
+      // 1) Find the author profile Email link via the icon helper class
+      var iconNodes = document.querySelectorAll('.email-link');
+      iconNodes.forEach(function (icon) {
+        var a = icon.closest('a');
+        if (a) {
+          a.setAttribute('href', 'mailto:' + addr);
+          a.setAttribute('rel', 'nofollow');
+        }
+      });
+
+      // 2) Optional: populate any elements marked with [data-email]
+      var emailTargets = document.querySelectorAll('[data-email]');
+      emailTargets.forEach(function (el) {
+        var value = el.getAttribute('data-email');
+        // if value is present, respect it; otherwise use our address
+        var target = (value && value.trim()) ? value.trim() : addr;
+        if (el.tagName.toLowerCase() === 'a') {
+          el.setAttribute('href', 'mailto:' + target);
+          el.setAttribute('rel', 'nofollow');
+          if (!el.textContent.trim()) el.textContent = target;
+        } else {
+          // Replace contents with an anchor
+          var a = document.createElement('a');
+          a.setAttribute('href', 'mailto:' + target);
+          a.setAttribute('rel', 'nofollow');
+          a.textContent = target;
+          el.innerHTML = '';
+          el.appendChild(a);
+        }
+      });
+
+      // Fun little easter egg for friendly humans opening DevTools
+      try {
+        var styleTitle = 'font:700 16px/1.3 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:#4ade80';
+        var styleBody = 'font:13px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:#a1a1aa';
+        var styleLink = 'color:#60a5fa; text-decoration: underline';
+        console.log('%cHello there, console explorer! 🕵️', styleTitle);
+        console.log('%cIf you\'re not a bot, say hi → %cmailto:' + addr, styleBody, styleLink);
+      } catch (_) {}
+
+      // Remove the footer feed link entirely when JS is available
+      try {
+        var feedLinks = document.querySelectorAll('.page__footer-follow a[href$="/feed.xml"], .page__footer-follow a[href$="feed.xml"]');
+        feedLinks.forEach(function (a) {
+          var li = a.closest('li');
+          if (li && li.parentNode) {
+            li.parentNode.removeChild(li);
+          } else if (a && a.parentNode) {
+            a.parentNode.removeChild(a);
+          }
+        });
+      } catch (_) {}
+    } catch (e) {
+      // fail silently
+    }
+  });
+</script>
+
+<div class="page__footer-copyright" data-custom>
+  &copy; {{ site.time | date: '%Y' }} Spencer Piontkowski
+</div>
