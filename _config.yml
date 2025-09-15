@@ -6,7 +6,6 @@ minimal_mistakes_skin: "dark"              # default, air, aqua, contrast, dark,
 remote_theme: "mmistakes/minimal-mistakes"
 
 # Build paths
-source: docs
 destination: _site
 
 # Localization
@@ -44,3 +43,18 @@ defaults:
       toc: false
       toc_sticky: false
       classes: wide
+
+exclude:
+  - AGENTS.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - docker-compose.yml
+  - .gitignore
+  - .github/
+  - .idea/
+  - _site/
+  - .jekyll-cache/
+  - .sass-cache/
+  - .DS_Store
+  - CNAME
